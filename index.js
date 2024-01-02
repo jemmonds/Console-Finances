@@ -1,4 +1,4 @@
-const finances = [
+var finances = [
   ['Jan-2010', 867884],
   ['Feb-2010', 984655],
   ['Mar-2010', 322013],
@@ -87,16 +87,21 @@ const finances = [
   ['Feb-2017', 671099],
 ];
 
+//total months //
 
 console.log( "Total Months: " + finances.length);
 
-let total = 0;
+// Net total // 
+
+var total = 0;
 
 for (let i = 0; i < finances.length; i++) {
   total += finances[i][1];
 }
 
 console.log('Total: $' + total);
+
+// average change 
 
 var totalChange = 0;
 
@@ -110,6 +115,49 @@ for (let i = 1; i < finances.length; i++) {
 var averageChange = (totalChange / (finances.length -1 )) .toFixed(2);
 
 console.log('Average Change:', averageChange);
+
+// greatest increase
+
+
+let greatestIncrease = 0;
+let greatestIncreaseDate = '';
+
+for (let i = 1; i < finances.length; i++) {
+  const currentProfit = finances[i][1];
+  const previousProfit = finances[i - 1][1];
+  const increase = currentProfit - previousProfit;
+
+  if (increase > greatestIncrease) {
+    greatestIncrease = increase;
+    greatestIncreaseDate = finances[i][0];
+  }
+}
+
+console.log('Greatest Increase in Profit / Losses:', greatestIncreaseDate + " ($" + greatestIncrease + ")");
+
+//greatest decrease 
+
+
+var greatestDecrease = 0;
+var greatestDecreaseDate = '';
+
+for (let i = 1; i < finances.length; i++) {
+  var currentProfit = finances[i][1];
+  var previousProfit = finances[i - 1][1];
+  var decrease = currentProfit - previousProfit;
+  if (Math.abs(decrease) > Math.abs(greatestDecrease)) {
+    greatestDecrease = decrease;
+    greatestDecreaseDate = finances[i][0];
+  }
+}
+console.log('Greatest Decrease in Profits/Losses:', greatestDecreaseDate + " ($" + greatestDecrease + ")");
+
+
+
+
+
+
+
 
 
 
